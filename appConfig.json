@@ -3,5 +3,8 @@
   "update": {
     "hasUpdate": false,
     "downloadUrl": ""
+  },
+  "dragCache": {
+    "cacheUrl": ""
   }
 }
