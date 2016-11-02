@@ -5,6 +5,6 @@
     "downloadUrl": ""
   },
   "dragCache": {
-    "cacheUrl": ""
+    "cacheUrl": "/files/dragCache/json"
   }
 }
