@@ -6,5 +6,8 @@
   },
   "dragCache": {
     "cacheUrl": ""
+  },
+  "personalRecommend":{
+    "fileUrl": "/files/recommend.json"
   }
 }
