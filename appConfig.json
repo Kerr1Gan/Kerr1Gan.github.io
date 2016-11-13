@@ -2,7 +2,7 @@
   "isOnlineDrag": true,
   "update": {
     "hasUpdate": true,
-    "isNotify": false,
+    "isNotify": true,
     "downloadUrl": "https://www.baidu.com",
     "introduction": {
        "title": "有更新哦",
