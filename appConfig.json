@@ -3,7 +3,12 @@
   "update": {
     "hasUpdate": false,
     "isNotify": false,
-    "downloadUrl": ""
+    "downloadUrl": "",
+    "introduction": {
+       "title": "",
+       "contentText": "",
+       "subText": ""
+    }
   },
   "dragCache": {
     "cacheUrl": ""
