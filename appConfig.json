@@ -1,13 +1,13 @@
 {
   "isOnlineDrag": true,
   "update": {
-    "hasUpdate": false,
+    "hasUpdate": true,
     "isNotify": false,
     "downloadUrl": "",
     "introduction": {
-       "title": "",
-       "contentText": "",
-       "subText": ""
+       "title": "有更新哦",
+       "contentText": "新增多种功能，更好用哦",
+       "subText": "别不更新哦"
     }
   },
   "dragCache": {
