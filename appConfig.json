@@ -2,6 +2,7 @@
   "isOnlineDrag": true,
   "update": {
     "hasUpdate": false,
+    "isNotify": false,
     "downloadUrl": ""
   },
   "dragCache": {
