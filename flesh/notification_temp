@@ -1,3 +1,4 @@
+# type 0 is anli , 1 is h5
 [
     {
         "id": 1,
@@ -8,6 +9,7 @@
         "time": "",
         "timeLimit": "",
         "actionDetailUrl": "http://m.mzitu.com/103381",
-        "h5Page" :""
+        "h5Page" :"",
+        "type" : 0
     }
 ]
