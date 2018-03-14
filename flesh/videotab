@@ -1,5 +1,10 @@
 [
         {
+            "title": "Vip",
+            "fragment": "com.ecjtu.flesh.ui.fragment.VipFragment",
+            "url":""
+        },
+        {
             "title": "爱恋",
             "fragment": "com.ecjtu.flesh.ui.fragment.V33Fragment",
             "url":"https://Kerr1Gan.github.io/flesh/v33a.json"
