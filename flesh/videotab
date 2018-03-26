@@ -3,5 +3,10 @@
             "title": "爱恋",
             "fragment": "com.ecjtu.flesh.ui.fragment.V33Fragment",
             "url":"https://Kerr1Gan.github.io/flesh/v33a.json"
+        },
+        {
+            "title": "OfO",
+            "fragment": "com.ecjtu.flesh.ui.fragment.OfO91Fragment",
+            "url":"https://Kerr1Gan.github.io/flesh/ofo91.json"
         }
 ]
