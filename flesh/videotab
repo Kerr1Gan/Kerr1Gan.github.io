@@ -15,5 +15,10 @@
             "title": "好萌",
             "clazz": "com.ecjtu.flesh.ui.activity.AppWebViewActivity",
             "url":"https://www.nicemoe.com/"
+        },
+         {
+            "title": "DD",
+            "clazz": "com.ecjtu.flesh.ui.activity.AppWebViewActivity",
+            "url":"https://www.dilidili.wang/"
         }
 ]
