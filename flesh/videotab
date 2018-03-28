@@ -8,5 +8,10 @@
             "title": "OfO",
             "fragment": "com.ecjtu.flesh.ui.fragment.OfO91Fragment",
             "url":"https://Kerr1Gan.github.io/flesh/ofo91.json"
+        },
+        {
+            "title": "好萌",
+            "fragment": "com.ecjtu.flesh.ui.fragment.AppWebViewFragment",
+            "url":"https://www.nicemoe.com/"
         }
 ]
