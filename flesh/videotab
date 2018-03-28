@@ -12,12 +12,6 @@
             "url":"https://Kerr1Gan.github.io/flesh/ofo91.json"
         },
         {
-            "title": "仙女",
-            "fragment": "com.ecjtu.flesh.ui.fragment.OfO91Fragment",
-            "clazz": "com.ecjtu.flesh.ui.activity.AppWebViewActivity",
-            "url":"http://m.xiannvw.com"
-        },
-        {
             "title": "好萌",
             "fragment": "com.ecjtu.flesh.ui.fragment.OfO91Fragment",
             "clazz": "com.ecjtu.flesh.ui.activity.AppWebViewActivity",
