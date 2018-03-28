@@ -14,7 +14,7 @@
         {
             "title": "仙女",
             "fragment": "com.ecjtu.flesh.ui.fragment.OfO91Fragment",
-            "clazz": "com.ecjtu.flesh.ui.activity.AppWebViewActivit",
+            "clazz": "com.ecjtu.flesh.ui.activity.AppWebViewActivity",
             "url":"http://m.xiannvw.com"
         },
         {
