@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <audio id="bgMusic" src="music.m4a" preload loop="loop"></audio>
+    <button class="play" id="audioBtn" style="cursor:pointer;color: red" onclick="audioAutoPlay()">play</button>
+</body>
+<script>
+    function audioAutoPlay() {
+        var audio = document.getElementById('bgMusic');
+        var btn = document.getElementById('audioBtn');
+        var isPlay = false;
+        if (audio.paused) {
+            isPlay = true;
+            audio.play();
+            btn.innerText = "pause";
+        } else {
+            isPlay = false;
+            audio.pause();
+            btn.innerText = "play";
+        }
+    }
+</script>
+
+</html>
