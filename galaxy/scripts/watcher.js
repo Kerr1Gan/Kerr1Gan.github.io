@@ -43,23 +43,28 @@ function main() {
             }
             if (!error) {
                 // success
-                let vpsInfo = {
-                    title: vpsTitle,
-                    ip: selfIp,
-                    ssCount: parseInt(stdout),
-                    ssIpMsg: ""
-                }
-                let options = {
-                    url: 'http://www.apkgalaxylab.com:9555/api/updateVpsInfo',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(vpsInfo)
-                };
-                request.put(options, function (error, response, body) {
-                    // console.info('response:' + JSON.stringify(response));
-                    // console.info("statusCode:" + response.statusCode)
-                    // console.info('body: ' + body );
+                request.get("https://kerr1gan.github.io/galaxy/scripts/config.json", function (error, response, body) {
+                    console.log(response.statusCode) // 200
+                    console.log(body);
+                    let config = JSON.parse(body);
+                    let vpsInfo = {
+                        title: vpsTitle,
+                        ip: selfIp,
+                        ssCount: parseInt(stdout),
+                        ssIpMsg: ""
+                    }
+                    let options = {
+                        url: `${config.url}/api/updateVpsInfo`,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(vpsInfo)
+                    };
+                    request.put(options, function (error, response, body) {
+                        // console.info('response:' + JSON.stringify(response));
+                        // console.info("statusCode:" + response.statusCode)
+                        // console.log('body: ' + body );
+                    });
                 });
             }
             if (error) {
