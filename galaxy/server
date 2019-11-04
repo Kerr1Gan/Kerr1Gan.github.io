@@ -1,4 +1,5 @@
 {
   "url":"http://104.168.190.184:9555",
-  "shuffle":false
+  "shuffle":false,
+  "vpsFromServer":false
 }
