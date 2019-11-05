@@ -1,7 +1,7 @@
 {
   "url":"http://104.168.190.184:9555",
   "script":{
-    "url":"http://104.168.190.184:9555",
-    "version":1
+    "url":"https://kerr1gan.github.io/galaxy/scripts/watcher.js",
+    "version":2
   }
 }
