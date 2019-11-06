@@ -21,7 +21,7 @@ function main() {
             selfIp = jsonObj.host;
             vpsTitle = jsonObj.title;
         }
-        console.log(jsonObj); 
+        console.log(jsonObj);
     } catch (error) {
         console.log(error);
     }
@@ -185,7 +185,7 @@ function changeConfig() {
     obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
     obj.server_port = 9555;
     let password = randomRange(26, 52).substr(0, 10);
-    obj.password = "YouRReallyGross";
+    obj.password = "YouRReallyGross" + selfIp.substring(selfIp.lastIndexOf(".") + 1);
     fs.writeFileSync(path, JSON.stringify(obj));
 }
 
