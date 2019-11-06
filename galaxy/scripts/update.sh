@@ -3,8 +3,8 @@
 touch "/root/ssConfig.json"
 cat>"/root/ssConfig.json"<<EOF
 {
-  "host": "127.0.0.1",
-  "title": "CN-HK-S",
+  "host": "",
+  "title": "",
   "msg": "message"
 }
 EOF
