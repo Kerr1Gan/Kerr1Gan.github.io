@@ -10,6 +10,7 @@ const selfIp = "103.135.250.219";
 const vpsTitle = "CN-HK-S"
 
 function main() {
+    console.log("say hello");
     const cmd = `ps aux | grep ${processName} | grep -v grep`;
     setInterval(() => {
         let stats = fs.statSync('/root/nohup.out');
