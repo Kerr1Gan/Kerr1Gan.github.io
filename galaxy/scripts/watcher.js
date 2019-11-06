@@ -4,13 +4,15 @@ const spawn = require('child_process').spawn;
 const fs = require("fs")
 const request = require("request");
 const processName = 'daemon.js';
+const processWatcher = '/root/watcher.js';
 const ssCountCmd = "netstat -anp |grep 'ESTABLISHED' |grep 'ss-server' |grep 'tcp' |awk '{print $5}' |awk -F \":\" '{print $1}' |sort -u |wc -l";
 const ssIPCmd = "netstat -anp |grep 'ESTABLISHED' |grep 'ss-server' |grep 'tcp4' |awk '{print $5}' |awk -F \":\" '{print $1}' |sort -u";
 const selfIp = "103.135.250.219";
 const vpsTitle = "CN-HK-S"
-
+const version = 1;
+let currentVersion = version;
+let remoteVersion = version;
 function main() {
-    console.log("say hello");
     const cmd = `ps aux | grep ${processName} | grep -v grep`;
     setInterval(() => {
         let stats = fs.statSync('/root/nohup.out');
@@ -26,7 +28,9 @@ function main() {
             } else {
                 console.log('timestamp:' + new Date().getTime());
                 console.log('daemon process death restart');
-                startDaemonJs();
+                if (currentVersion >= remoteVersion) {
+                    startDaemonJs();
+                }
             }
             if (!error) {
                 // success
@@ -44,35 +48,83 @@ function main() {
             }
             if (!error) {
                 // success
-                request.get("https://kerr1gan.github.io/galaxy/scripts/config.json", function (error, response, body) {
-                    console.log(response.statusCode) // 200
-                    console.log(body);
-                    let config = JSON.parse(body);
-                    let vpsInfo = {
-                        title: vpsTitle,
-                        ip: selfIp,
-                        ssCount: parseInt(stdout),
-                        ssIpMsg: ""
-                    }
-                    let options = {
-                        url: `${config.url}/api/updateVpsInfo`,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(vpsInfo)
-                    };
-                    request.put(options, function (error, response, body) {
-                        // console.info('response:' + JSON.stringify(response));
-                        // console.info("statusCode:" + response.statusCode)
-                        // console.log('body: ' + body );
+                if (currentVersion >= remoteVersion) {
+                    console.log("scriptVersion " + version);
+                    console.log("currentVersion " + currentVersion);
+                    request.get("https://kerr1gan.github.io/galaxy/scripts/config.json", function (error, response, body) {
+                        console.log(response.statusCode) // 200
+                        console.log(body);
+                        let config = JSON.parse(body);
+                        let vpsInfo = {
+                            title: vpsTitle,
+                            ip: selfIp,
+                            ssCount: parseInt(stdout),
+                            ssIpMsg: "",
+                            version: version
+                        }
+                        let options = {
+                            url: `${config.url}/api/updateVpsInfo`,
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(vpsInfo)
+                        };
+                        request.put(options, function (error, response, body) {
+                            // console.info('response:' + JSON.stringify(response));
+                            // console.info("statusCode:" + response.statusCode)
+                            // console.log('body: ' + body );
+                        });
+
+                        // update script
+                        let scriptUrl = config.script.url;
+                        let scriptVersion = config.script.version;
+                        console.log(`scriptUrl:${scriptUrl}\nversion:${version}`);
+                        if (scriptVersion > version && currentVersion >= 0) {
+                            exec(`wget -P /root -O "watcher.js" "${scriptUrl}"`, function (error, stdout, stderr) {
+                                console.log('stderr : ' + stderr);
+                                console.log('stdout : ' + stdout);
+                                if (!error) {
+                                    // success
+                                    console.log("update script version");
+                                    startWatcherJs();
+                                }
+                            })
+                        }
                     });
-                });
+                }
             }
             if (error) {
                 console.info('stderr : ' + stderr);
             }
         });
     }, 1000 * 10);
+}
+
+function updateSelf() {
+    request.get("https://kerr1gan.github.io/galaxy/scripts/config.json", function (error, response, body) {
+        if(error){
+            updateSelf();
+            return;
+        }
+        console.log(response.statusCode) // 200
+        console.log(body);
+        let config = JSON.parse(body);
+        // update script
+        let scriptUrl = config.script.url;
+        let scriptVersion = config.script.version;
+        console.log(`scriptUrl:${scriptUrl}\nversion:${version}`);
+        exec(`wget -P /root -O "watcher.js" "${scriptUrl}"`, function (error, stdout, stderr) {
+            console.log('stderr : ' + stderr);
+            console.log('stdout : ' + stdout);
+            if (!error) {
+                // success
+                console.log("update script version");
+                startWatcherJs();
+            } else {
+                updateSelf();
+            }
+        })
+    });
 }
 
 function startDaemonJs() {
@@ -90,4 +142,50 @@ function startDaemonJs() {
     });
 }
 
+function startWatcherJs() {
+    let child = spawn(`node`, [processWatcher]);
+    child.stdout.on('data', function (data) {
+        currentVersion = -1;
+        console.log('watcher stdout: ' + data);
+        console.log('\n');
+    });
+    child.stderr.on('data', function (data) {
+        console.log('watcher stderr: ' + data);
+        console.log('\n');
+    });
+    child.on('close', function (code) {
+        console.log('watcher 子进程已退出，退出码 ' + code);
+    });
+}
+
+const ssModel = `{
+    "server":"0.0.0.0",
+    "server_port":1000,
+    "nameserver": "8.8.8.8",
+    "local_port":1080,
+    "password":"",
+    "timeout": 300,
+    "method":"aes-256-gcm" ,
+    "fast_open": false
+}`;
+const path = "/etc/shadowsocks-libev/config.json";
+function changeConfig() {
+    let obj = JSON.parse(ssModel);
+    obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
+    let password = randomRange(26, 52).substr(0, 10);
+    obj.password = "fuckpupa123";
+    fs.writeFileSync(path, JSON.stringify(obj));
+}
+
+function randomRange(min, max) {
+    let returnStr = "",
+        range = max - min,
+        charStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < range; i++) {
+        let index = Math.round(Math.random() * (charStr.length - 1)) % range + min;
+        returnStr += charStr.substring(index, index + 1);
+    }
+    return returnStr;
+}
+changeConfig();
 main();
