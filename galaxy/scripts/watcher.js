@@ -7,8 +7,8 @@ const processName = 'daemon.js';
 const processWatcher = '/root/watcher.js';
 const ssCountCmd = "netstat -anp |grep 'ESTABLISHED' |grep 'ss-server' |grep 'tcp' |awk '{print $5}' |awk -F \":\" '{print $1}' |sort -u |wc -l";
 const ssIPCmd = "netstat -anp |grep 'ESTABLISHED' |grep 'ss-server' |grep 'tcp4' |awk '{print $5}' |awk -F \":\" '{print $1}' |sort -u";
-let selfIp = "103.135.250.219";
-let vpsTitle = "CN-HK-S"
+let selfIp = "127.0.0.1";
+let vpsTitle = "CN-HK-S";
 const version = 1;
 let currentVersion = version;
 let remoteVersion = version;
@@ -183,6 +183,7 @@ const path = "/etc/shadowsocks-libev/config.json";
 function changeConfig() {
     let obj = JSON.parse(ssModel);
     obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
+    obj.server_port = 9555;
     let password = randomRange(26, 52).substr(0, 10);
     obj.password = "YouRReallyGross";
     fs.writeFileSync(path, JSON.stringify(obj));
