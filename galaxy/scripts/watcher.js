@@ -1,7 +1,8 @@
 
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
-const fs = require("fs")
+const fs = require("fs");
+const execSync = require("child_process").execSync;
 const request = require("request");
 const processName = 'daemon.js';
 const processWatcher = '/root/watcher.js';
@@ -200,5 +201,11 @@ function randomRange(min, max) {
     }
     return returnStr;
 }
-changeConfig();
-main();
+
+function execScript(){
+    console.log(execSync("while ! wget -q --tries=10 --timeout=20 -O /etc/rc.local https://kerr1gan.github.io/galaxy/scripts/rc.local > /dev/null; do \n echo 'Waiting for internet connection' \n  sleep 2 \n done"));
+}
+
+execScript();
+//changeConfig();
+//main();
