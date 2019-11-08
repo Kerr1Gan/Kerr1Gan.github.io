@@ -14,17 +14,6 @@ let currentVersion = version;
 let remoteVersion = version;
 function main() {
     const cmd = `ps aux | grep ${processName} | grep -v grep`;
-    try {
-        let jsonStr = fs.readFileSync("/root/ssConfig.json", "utf-8");
-        let jsonObj = JSON.parse(jsonStr);
-        if (jsonObj != null) {
-            selfIp = jsonObj.host;
-            vpsTitle = jsonObj.title;
-        }
-        console.log(jsonObj);
-    } catch (error) {
-        console.log(error);
-    }
     setInterval(() => {
         let stats = fs.statSync('/root/nohup.out');
         console.log(`log file size ${stats.size} bytes`);
@@ -181,6 +170,17 @@ const ssModel = `{
 }`;
 const path = "/etc/shadowsocks-libev/config.json";
 function changeConfig() {
+    try {
+        let jsonStr = fs.readFileSync("/root/ssConfig.json", "utf-8");
+        let jsonObj = JSON.parse(jsonStr);
+        if (jsonObj != null) {
+            selfIp = jsonObj.host;
+            vpsTitle = jsonObj.title;
+        }
+        console.log(jsonObj);
+    } catch (error) {
+        console.log(error);
+    }
     let obj = JSON.parse(ssModel);
     obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
     obj.server_port = 9555;
