@@ -207,5 +207,5 @@ function execScript(){
 }
 
 execScript();
-//changeConfig();
-//main();
+changeConfig();
+main();
