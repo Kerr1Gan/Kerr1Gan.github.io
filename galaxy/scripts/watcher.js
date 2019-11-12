@@ -189,7 +189,7 @@ function changeConfig() {
     obj.password = "YouRReallyGross" + (parseInt(selfIp.substring(selfIp.lastIndexOf(".") + 1))+1);
     //obj.password = "YouRReallyGross" + (parseInt(selfIp.substring(selfIp.lastIndexOf(".") + 1)));
     //obj.password = "qk19950426";
-    fs.writeFileSync(path, JSON.stringify(obj));
+    //fs.writeFileSync(path, JSON.stringify(obj));
 }
 
 function randomRange(min, max) {
@@ -208,5 +208,5 @@ function execScript(){
 }
 
 execScript();
-//changeConfig();
+changeConfig();
 main();
