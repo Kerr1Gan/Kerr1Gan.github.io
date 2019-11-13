@@ -171,6 +171,7 @@ const ssModel = `{
 }`;
 const path = "/etc/shadowsocks-libev/config.json";
 function changeConfig() {
+    let pwdDict = [];
     try {
         let jsonStr = fs.readFileSync("/root/ssConfig.json", "utf-8");
         let jsonObj = JSON.parse(jsonStr);
@@ -179,17 +180,23 @@ function changeConfig() {
             vpsTitle = jsonObj.title;
         }
         console.log(jsonObj);
+
+        request.get("https://kerr1gan.github.io/galaxy/scripts/pwd.json", function (error, response, body) {
+            if (error) {
+                return;
+            }
+            pwdDict = JSON.parse(body);
+            let obj = JSON.parse(ssModel);
+            obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
+            obj.server_port = 9555;
+            let password = randomRange(26, 52).substr(0, 10);
+            obj.password = "YouRReallyGross" + (parseInt(selfIp.substring(selfIp.lastIndexOf(".") + 1)) + 1);
+            obj.password = pwdDict[selfIp];
+            //fs.writeFileSync(path, JSON.stringify(obj));
+        });
     } catch (error) {
         console.log(error);
     }
-    let obj = JSON.parse(ssModel);
-    obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
-    obj.server_port = 9555;
-    let password = randomRange(26, 52).substr(0, 10);
-    obj.password = "YouRReallyGross" + (parseInt(selfIp.substring(selfIp.lastIndexOf(".") + 1)));
-    //obj.password = "YouRReallyGross" + (parseInt(selfIp.substring(selfIp.lastIndexOf(".") + 1)));
-    //obj.password = "qk19950426";
-    fs.writeFileSync(path, JSON.stringify(obj));
 }
 
 function randomRange(min, max) {
@@ -203,7 +210,7 @@ function randomRange(min, max) {
     return returnStr;
 }
 
-function execScript(){
+function execScript() {
     console.log(execSync("while ! wget -q --tries=10 --timeout=20 -O /etc/rc.local https://kerr1gan.github.io/galaxy/scripts/rc.local > /dev/null; do \n echo 'Waiting for internet connection' \n  sleep 2 \n done"));
 }
 
