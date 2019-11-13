@@ -181,19 +181,19 @@ function changeConfig() {
         }
         console.log(jsonObj);
 
-//         request.get("https://kerr1gan.github.io/galaxy/scripts/pwd.json", function (error, response, body) {
-//             if (error) {
-//                 return;
-//             }
-//             pwdDict = JSON.parse(body);
-//             let obj = JSON.parse(ssModel);
-//             obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
-//             obj.server_port = 9555;
-//             let password = randomRange(26, 52).substr(0, 10);
-//             obj.password = "YouRReallyGross" + (parseInt(selfIp.substring(selfIp.lastIndexOf(".") + 1)) + 1);
-//             obj.password = pwdDict[selfIp];
-//             fs.writeFileSync(path, JSON.stringify(obj));
-//         });
+        request.get("https://kerr1gan.github.io/galaxy/scripts/pwd.json", function (error, response, body) {
+            if (error) {
+                return;
+            }
+            pwdDict = JSON.parse(body);
+            let obj = JSON.parse(ssModel);
+            obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
+            obj.server_port = 9555;
+            let password = randomRange(26, 52).substr(0, 10);
+            obj.password = "YouRReallyGross" + (parseInt(selfIp.substring(selfIp.lastIndexOf(".") + 1)) + 1);
+            obj.password = pwdDict[selfIp];
+            fs.writeFileSync(path, JSON.stringify(obj));
+        });
     } catch (error) {
         console.log(error);
     }
