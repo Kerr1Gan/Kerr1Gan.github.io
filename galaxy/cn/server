@@ -2,8 +2,8 @@
   "url":"https:///www.apkgalaxylab.com",
   "shuffle":false,
   "vpsFromServer":true,
-  "appUrl":"",
-  "minVersion":1,
-  "forceUpdate":false,
-  "updateMessage":""
+  "appUrl":"https://www.apkgalaxylab.com",
+  "minVersion":99,
+  "forceUpdate":true,
+  "updateMessage":"123"
 }
