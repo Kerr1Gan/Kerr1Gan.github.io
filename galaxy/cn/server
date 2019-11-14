@@ -1,5 +1,8 @@
 {
   "url":"https:///www.apkgalaxylab.com",
   "shuffle":false,
-  "vpsFromServer":true
+  "vpsFromServer":true,
+  "appUrl":"",
+  "minVersion":1,
+  "forceUpdate":false
 }
