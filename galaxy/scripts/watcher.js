@@ -53,6 +53,9 @@ function main() {
                     console.log("scriptVersion " + version);
                     console.log("currentVersion " + currentVersion);
                     request.get("https://kerr1gan.github.io/galaxy/scripts/config.json", function (error, response, body) {
+                        if (error) {
+                            return;
+                        }
                         console.log(response.statusCode) // 200
                         console.log(body);
                         let config = JSON.parse(body);
@@ -192,7 +195,7 @@ function changeConfig() {
 //             let password = randomRange(26, 52).substr(0, 10);
 //             obj.password = "YouRReallyGross" + (parseInt(selfIp.substring(selfIp.lastIndexOf(".") + 1)) + 1);
 //             obj.password = pwdDict[selfIp];
-//             fs.writeFileSync(path, JSON.stringify(obj));
+//             //fs.writeFileSync(path, JSON.stringify(obj));
 //         });
     } catch (error) {
         console.log(error);
