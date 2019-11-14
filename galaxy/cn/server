@@ -3,7 +3,7 @@
   "shuffle":false,
   "vpsFromServer":true,
   "appUrl":"https://www.apkgalaxylab.com",
-  "minVersion":32,
-  "forceUpdate":true,
+  "minVersion":31,
+  "forceUpdate":false,
   "updateMessage":"123"
 }
