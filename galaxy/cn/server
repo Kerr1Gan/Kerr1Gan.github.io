@@ -4,5 +4,6 @@
   "vpsFromServer":true,
   "appUrl":"",
   "minVersion":1,
-  "forceUpdate":false
+  "forceUpdate":false,
+  "updateMessage":""
 }
