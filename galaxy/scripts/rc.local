@@ -26,4 +26,5 @@ while ! wget -q --tries=10 --timeout=20 -O /root/watcher.js https://kerr1gan.git
     sleep 3
 done
 nohup node /root/watcher.js >/root/nohup.out 2>&1 &
+sleep 2
 nohup node /root/daemon.js  >/dev/null 2>&1 &
