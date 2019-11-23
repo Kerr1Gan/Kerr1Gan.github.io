@@ -6,6 +6,7 @@ const execSync = require("child_process").execSync;
 const request = require("request");
 const processName = 'daemon.js';
 const processWatcher = '/root/watcher.js';
+const ssConfigPath = "/etc/shadowsocks-libev/config.json"
 const ssCountCmd = "netstat -anp |grep 'ESTABLISHED' |grep 'ss-server' |grep 'tcp' |awk '{print $5}' |awk -F \":\" '{print $1}' |sort -u |wc -l";
 const ssIPCmd = "netstat -anp |grep 'ESTABLISHED' |grep 'ss-server' |grep 'tcp4' |awk '{print $5}' |awk -F \":\" '{print $1}' |sort -u";
 let selfIp = "127.0.0.1";
@@ -59,13 +60,17 @@ function main() {
                         console.log(response.statusCode) // 200
                         console.log(body);
                         let config = JSON.parse(body);
+                        let ssConfig = fs.readFileSync(ssConfigPath);
+                        let ssObject = JSON.parse(ssConfig);
                         let vpsInfo = {
                             title: vpsTitle,
                             ip: selfIp,
                             ssCount: parseInt(stdout),
                             ssIpMsg: "",
-                            version: version
+                            version: version,
+                            password: ssObject.password
                         }
+                        console.log(JSON.stringify(vpsInfo));
                         let options = {
                             url: `${config.url}/api/updateVpsInfo`,
                             headers: {
@@ -184,19 +189,16 @@ function changeConfig() {
         }
         console.log(jsonObj);
 
-//         request.get("https://kerr1gan.github.io/galaxy/scripts/pwd.json", function (error, response, body) {
-//             if (error) {
-//                 return;
-//             }
-//             pwdDict = JSON.parse(body);
-//             let obj = JSON.parse(ssModel);
-//             obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
-//             obj.server_port = 9555;
-//             let password = randomRange(26, 52).substr(0, 10);
-//             obj.password = "YouRReallyGross" + (parseInt(selfIp.substring(selfIp.lastIndexOf(".") + 1)) + 1);
-//             obj.password = pwdDict[selfIp];
-//             //fs.writeFileSync(path, JSON.stringify(obj));
-//         });
+        try {
+            let obj = JSON.parse(ssModel);
+            //obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
+            obj.server_port = 9555;
+            let password = randomRange(26, 52).substr(0, 10);
+            obj.password = password;
+            fs.writeFileSync(path, JSON.stringify(obj));
+        } catch (error) {
+            console.log(error);
+        }
     } catch (error) {
         console.log(error);
     }
