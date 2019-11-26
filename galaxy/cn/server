@@ -7,6 +7,6 @@
   "forceUpdate":false,
   "updateMessage":"123",
   "requestProfile": false,
-  "endGetInfoByGH": true,
+  "endGetInfoByGH": false,
   "onlyGetInfoByGH": false
 }
