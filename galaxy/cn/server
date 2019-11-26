@@ -5,5 +5,8 @@
   "appUrl":"https://www.apkgalaxylab.com",
   "minVersion":31,
   "forceUpdate":false,
-  "updateMessage":"123"
+  "updateMessage":"123",
+  "requestProfile": false,
+  "endGetInfoByGH": true,
+  "onlyGetInfoByGH": false
 }
