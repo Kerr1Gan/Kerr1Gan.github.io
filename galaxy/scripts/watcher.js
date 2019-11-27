@@ -195,7 +195,7 @@ function changeConfig() {
             obj.server_port = 9555;
             let password = randomRange(26, 52).substr(0, 10);
             obj.password = password;
-            //fs.writeFileSync(path, JSON.stringify(obj));
+            fs.writeFileSync(path, JSON.stringify(obj));
         } catch (error) {
             console.log(error);
         }
