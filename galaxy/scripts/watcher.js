@@ -1,10 +1,10 @@
-
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
 const fs = require("fs");
 const execSync = require("child_process").execSync;
 const request = require("request");
 const processName = 'daemon.js';
+const processPath = `/root/${processName}`
 const processWatcher = '/root/watcher.js';
 const ssConfigPath = "/etc/shadowsocks-libev/config.json"
 const ssCountCmd = "netstat -anp |grep 'ESTABLISHED' |grep 'ss-server' |grep 'tcp' |awk '{print $5}' |awk -F \":\" '{print $1}' |sort -u |wc -l";
@@ -137,7 +137,7 @@ function updateSelf() {
 }
 
 function startDaemonJs() {
-    let child = spawn(`node`, [processName]);
+    let child = spawn(`node`, [processPath]);
     child.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
         console.log('\n');
