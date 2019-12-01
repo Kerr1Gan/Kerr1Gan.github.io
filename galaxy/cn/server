@@ -6,7 +6,7 @@
   "minVersion":31,
   "forceUpdate":false,
   "updateMessage":"123",
-  "requestProfile": false,
+  "requestProfile": true,
   "endGetInfoByGH": false,
   "onlyGetInfoByGH": false
 }
