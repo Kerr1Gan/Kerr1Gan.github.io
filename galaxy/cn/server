@@ -14,5 +14,5 @@
   "watcherConfigLoopTime": 60000,
   "testRetryTimes": 2,
   "shutdownWatcher": false,
-  "confusePL": false
+  "confusePL": true
 }
