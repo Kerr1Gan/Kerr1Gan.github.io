@@ -8,5 +8,11 @@
   "updateMessage":"123",
   "requestProfile": false,
   "endGetInfoByGH": false,
-  "onlyGetInfoByGH": false
+  "onlyGetInfoByGH": false,
+  "watcherUrl":"",
+  "watcherLoopTime": 60000,
+  "watcherConfigLoopTime": 60000,
+  "testRetryTimes": 2,
+  "shutdownWatcher": false,
+  "confusePL": true
 }
