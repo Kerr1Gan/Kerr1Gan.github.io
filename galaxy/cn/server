@@ -12,7 +12,7 @@
   "watcherUrl":"",
   "watcherLoopTime": 60000,
   "watcherConfigLoopTime": 60000,
-  "testRetryTimes": 2,
+  "testRetryTimes": 3,
   "shutdownWatcher": false,
   "confusePL": true
 }
