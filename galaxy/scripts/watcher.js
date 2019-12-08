@@ -14,6 +14,7 @@ let vpsTitle = "CN-HK-S";
 const version = 1;
 let currentVersion = version;
 let remoteVersion = version;
+let systemStartTime = Date.now();
 function main() {
     const cmd = `ps aux | grep ${processName} | grep -v grep`;
     setInterval(() => {
@@ -44,6 +45,12 @@ function main() {
     }, 1000 * 10);
 
     setInterval(() => {
+        let interval = Date.now() - systemStartTime;
+        console.log("system running time " + interval);
+        if (interval >= 40 * 60 * 60 * 1000) {
+            exec("reboot", function (error, stdout, stderr) {
+            });
+        }
         exec(ssCountCmd, function (error, stdout, stderr) {
             if (stdout) {
                 console.log("ss count:" + stdout);
