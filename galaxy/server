@@ -1,5 +1,6 @@
 {
   "url":"https://www.apkgalaxylab.com",
+  "urls":["https://www.apkgalaxylab.com","https://www.apkgalaxylab.com"],
   "shuffle":false,
   "vpsFromServer":true,
   "appUrl":"",
@@ -12,7 +13,7 @@
   "watcherUrl":"",
   "watcherLoopTime": 60000,
   "watcherConfigLoopTime": 60000,
-  "testRetryTimes": 2,
+  "testRetryTimes": 3,
   "shutdownWatcher": false,
-  "confusePL": true
+  "confusePL": false
 }
