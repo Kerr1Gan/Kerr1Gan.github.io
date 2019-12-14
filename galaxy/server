@@ -3,11 +3,11 @@
   "urls":["https://www.apkgalaxylab.com","https://www.apkgalaxylab.com"],
   "shuffle":false,
   "vpsFromServer":true,
-  "appUrl":"",
-  "minVersion":31,
+  "appUrl":"https://galaxylab.s3-ap-southeast-1.amazonaws.com/apk/galaxyvpn.apk",
+  "minVersion":39,
   "newestVersion":43,
-  "forceUpdate":false,
-  "updateMessage":"由于一些原因老版本将不再维护，请点确定升级到最新版本，联系邮箱galaxylab-vpn@outlook.com",
+  "forceUpdate":true,
+  "updateMessage":"Please update the app，email galaxylab-vpn@outlook.com",
   "requestProfile": true,
   "endGetInfoByGH": false,
   "onlyGetInfoByGH": false,
@@ -17,5 +17,5 @@
   "testRetryTimes": 3,
   "shutdownWatcher": false,
   "confusePL": false,
-  "useApiV2": false
+  "useApiV2": true
 }
