@@ -17,5 +17,5 @@
   "testRetryTimes": 3,
   "shutdownWatcher": false,
   "confusePL": false,
-  "useApiV2": false
+  "useApiV2": true
 }
