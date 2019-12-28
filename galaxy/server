@@ -5,7 +5,7 @@
   "vpsFromServer":true,
   "appUrl":"https://galaxylab.s3-ap-southeast-1.amazonaws.com/apk/galaxyvpn.apk",
   "minVersion":39,
-  "newestVersion":45,
+  "newestVersion":47,
   "forceUpdate":true,
   "updateMessage":"Please update the app，email galaxylab-vpn@outlook.com",
   "requestProfile": true,
