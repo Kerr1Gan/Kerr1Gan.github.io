@@ -4,7 +4,7 @@
   "shuffle":false,
   "vpsFromServer":true,
   "appUrl":"https://galaxylab.s3-ap-southeast-1.amazonaws.com/apk/galaxyvpn.apk",
-  "minVersion":39,
+  "minVersion":45,
   "newestVersion":54,
   "forceUpdate":true,
   "updateMessage":"由于一些原因老版本将不再维护，请点确定升级到最新版本，联系邮箱galaxylab-vpn@outlook.com",
