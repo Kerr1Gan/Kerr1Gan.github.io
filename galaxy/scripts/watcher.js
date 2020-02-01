@@ -200,7 +200,7 @@ function changeConfig() {
             let obj = JSON.parse(ssModel);
             //obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
             obj.server_port = 9555;
-            let password = randomRange(26, 52).substr(0, 10);
+            let password = randomRange(26, 52).substr(0, 24);
             obj.password = password;
             fs.writeFileSync(path, JSON.stringify(obj));
         } catch (error) {
