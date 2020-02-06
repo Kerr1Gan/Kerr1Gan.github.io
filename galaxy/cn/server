@@ -3,7 +3,7 @@
   "urls":["https://www.apkgalaxylab.com","https://ssgalaxyss.club"],
   "shuffle":false,
   "vpsFromServer":true,
-  "appUrl":"https://galaxylab.s3-ap-southeast-1.amazonaws.com/apk/galaxyvpn2.apk",
+  "appUrl":"https://ssgalaxyss.club/galaxyvpn.apk",
   "minVersion":50,
   "newestVersion":56,
   "forceUpdate":true,
