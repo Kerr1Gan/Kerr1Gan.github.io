@@ -24,30 +24,35 @@ function main() {
             fs.truncate('/root/nohup.out', 0, function () { console.log('truncate done') })
             console.log(`log file reset`);
         }
-        exec(cmd, function (error, stdout, stderr) {
-            if (stdout) {
-                console.log(stdout);
-                console.log('timestamp:' + new Date().getTime());
-            } else {
-                console.log('timestamp:' + new Date().getTime());
-                console.log('daemon process death restart');
-                if (currentVersion >= remoteVersion) {
-                    startDaemonJs();
+        try {
+            exec(cmd, function (error, stdout, stderr) {
+                if (stdout) {
+                    console.log(stdout);
+                    console.log('timestamp:' + new Date().getTime());
+                } else {
+                    console.log('timestamp:' + new Date().getTime());
+                    console.log('daemon process death restart');
+                    if (currentVersion >= remoteVersion) {
+                        startDaemonJs();
+                    }
                 }
-            }
-            if (!error) {
-                // success
-            }
-            if (error) {
-                console.info('stderr : ' + stderr);
-            }
-        })
+                if (!error) {
+                    // success
+                }
+                if (error) {
+                    console.info('stderr : ' + stderr);
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }, 1000 * 10);
 
     setInterval(() => {
         let interval = Date.now() - systemStartTime;
         console.log("system running time " + interval);
         if (interval >= 40 * 60 * 60 * 1000) {
+            // 40小时重启一次机器
             exec("reboot", function (error, stdout, stderr) {
             });
         }
@@ -200,7 +205,7 @@ function changeConfig() {
             let obj = JSON.parse(ssModel);
             //obj.server_port = Math.round((Math.random() * 100000) % 10000) + 1000;
             obj.server_port = 9555;
-            let password = randomRange(0, 62).substr(0, 24);
+            let password = randomRange(26, 52).substr(0, 10);
             obj.password = password;
             fs.writeFileSync(path, JSON.stringify(obj));
         } catch (error) {
