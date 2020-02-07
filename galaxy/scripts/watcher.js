@@ -33,7 +33,11 @@ function main() {
                     console.log('timestamp:' + new Date().getTime());
                     console.log('daemon process death restart');
                     if (currentVersion >= remoteVersion) {
-                        startDaemonJs();
+                        try {
+                            startDaemonJs();
+                        } catch (ex) {
+                            console.log(ex);
+                        }
                     }
                 }
                 if (!error) {
@@ -107,7 +111,11 @@ function main() {
                                 if (!error) {
                                     // success
                                     console.log("update script version");
-                                    startWatcherJs();
+                                    try {
+                                        startWatcherJs();
+                                    } catch (ex2) {
+                                        console.log(ex2);
+                                    }
                                 }
                             })
                         }
