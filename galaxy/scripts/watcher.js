@@ -17,6 +17,13 @@ let remoteVersion = version;
 let systemStartTime = Date.now();
 function main() {
     const cmd = `ps aux | grep ${processName} | grep -v grep`;
+    try {
+        if (fs.existsSync('/root/nohup.out')) {
+            fs.unlinkSync('/root/nohup.out');
+        }
+    } catch (error) {
+        console.log(error);
+    }
     setInterval(() => {
         let stats = fs.statSync('/root/nohup.out');
         console.log(`log file size ${stats.size} bytes`);
