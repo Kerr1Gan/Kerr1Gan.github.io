@@ -193,7 +193,7 @@ function startWatcherJs() {
 }
 
 function startSs() {
-    let ssProcess = child_process.spawn(`${shadowsocksPath}`, `-c /etc/shadowsocks-libev/config.json -u`.split(' '));
+    let ssProcess = spawn(`${shadowsocksPath}`, `-c /etc/shadowsocks-libev/config.json -u`.split(' '));
     ssProcess.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
         console.log('\n');
@@ -206,7 +206,7 @@ function startSs() {
         console.log('子进程已退出，退出码 ' + code);
     });
 
-    let v2RayProcess = child_process.spawn(`/bin/sh`,
+    let v2RayProcess = spawn(`/bin/sh`,
         ['-c', `${shadowsocksPath} -c /etc/shadowsocks-libev/config.json -p 443 -u --plugin /usr/bin/v2ray-plugin --plugin-opts "server;fast-open;"`],
     );
     v2RayProcess.stdout.on('data', function (data) {
