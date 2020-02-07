@@ -7,6 +7,7 @@ const processName = 'daemon.js';
 const processPath = `/root/${processName}`
 const processWatcher = '/root/watcher.js';
 const ssConfigPath = "/etc/shadowsocks-libev/config.json"
+const shadowsocksPath = "/root/shadowsocks-libev/src/ss-server";
 const ssCountCmd = "netstat -anp |grep 'ESTABLISHED' |grep 'ss-server' |grep 'tcp' |awk '{print $5}' |awk -F \":\" '{print $1}' |sort -u |wc -l";
 const ssIPCmd = "netstat -anp |grep 'ESTABLISHED' |grep 'ss-server' |grep 'tcp4' |awk '{print $5}' |awk -F \":\" '{print $1}' |sort -u";
 let selfIp = "127.0.0.1";
