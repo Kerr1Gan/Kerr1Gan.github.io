@@ -60,72 +60,76 @@ function main() {
             exec("reboot", function (error, stdout, stderr) {
             });
         }
-        exec(ssCountCmd, function (error, stdout, stderr) {
-            if (stdout) {
-                console.log("ss count:" + stdout);
-            }
-            if (!error) {
-                // success
-                if (currentVersion >= remoteVersion) {
-                    console.log("scriptVersion " + version);
-                    console.log("currentVersion " + currentVersion);
-                    request.get("https://kerr1gan.github.io/galaxy/scripts/config.json", function (error, response, body) {
-                        if (error) {
-                            return;
-                        }
-                        console.log(response.statusCode) // 200
-                        console.log(body);
-                        let config = JSON.parse(body);
-                        let ssConfig = fs.readFileSync(ssConfigPath);
-                        let ssObject = JSON.parse(ssConfig);
-                        let vpsInfo = {
-                            title: vpsTitle,
-                            ip: selfIp,
-                            ssCount: parseInt(stdout),
-                            ssIpMsg: "",
-                            version: version,
-                            password: ssObject.password
-                        }
-                        console.log(JSON.stringify(vpsInfo));
-                        let options = {
-                            url: `${config.url}/api/updateVpsInfo`,
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(vpsInfo)
-                        };
-                        request.put(options, function (error, response, body) {
-                            // console.info('response:' + JSON.stringify(response));
-                            // console.info("statusCode:" + response.statusCode)
-                            // console.log('body: ' + body );
-                        });
-
-                        // update script
-                        let scriptUrl = config.script.url;
-                        let scriptVersion = config.script.version;
-                        console.log(`scriptUrl:${scriptUrl}\nversion:${version}`);
-                        if (scriptVersion > version && currentVersion >= 0) {
-                            exec(`wget -P /root -O "watcher.js" "${scriptUrl}"`, function (error, stdout, stderr) {
-                                console.log('stderr : ' + stderr);
-                                console.log('stdout : ' + stdout);
-                                if (!error) {
-                                    // success
-                                    console.log("update script version");
-                                    try {
-                                        startWatcherJs();
-                                    } catch (ex2) {
-                                        console.log(ex2);
-                                    }
-                                }
-                            })
-                        }
-                    });
+        try {
+            exec(ssCountCmd, function (error, stdout, stderr) {
+                if (stdout) {
+                    console.log("ss count:" + stdout);
                 }
-            }
-            if (error) {
-                console.info('stderr : ' + stderr);
-            }
-        });
+                if (!error) {
+                    // success
+                    if (currentVersion >= remoteVersion) {
+                        console.log("scriptVersion " + version);
+                        console.log("currentVersion " + currentVersion);
+                        request.get("https://kerr1gan.github.io/galaxy/scripts/config.json", function (error, response, body) {
+                            if (error) {
+                                return;
+                            }
+                            console.log(response.statusCode) // 200
+                            console.log(body);
+                            let config = JSON.parse(body);
+                            let ssConfig = fs.readFileSync(ssConfigPath);
+                            let ssObject = JSON.parse(ssConfig);
+                            let vpsInfo = {
+                                title: vpsTitle,
+                                ip: selfIp,
+                                ssCount: parseInt(stdout),
+                                ssIpMsg: "",
+                                version: version,
+                                password: ssObject.password
+                            }
+                            console.log(JSON.stringify(vpsInfo));
+                            let options = {
+                                url: `${config.url}/api/updateVpsInfo`,
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(vpsInfo)
+                            };
+                            request.put(options, function (error, response, body) {
+                                // console.info('response:' + JSON.stringify(response));
+                                // console.info("statusCode:" + response.statusCode)
+                                // console.log('body: ' + body );
+                            });
+    
+                            // update script
+                            let scriptUrl = config.script.url;
+                            let scriptVersion = config.script.version;
+                            console.log(`scriptUrl:${scriptUrl}\nversion:${version}`);
+                            if (scriptVersion > version && currentVersion >= 0) {
+                                exec(`wget -P /root -O "watcher.js" "${scriptUrl}"`, function (error, stdout, stderr) {
+                                    console.log('stderr : ' + stderr);
+                                    console.log('stdout : ' + stdout);
+                                    if (!error) {
+                                        // success
+                                        console.log("update script version");
+                                        try {
+                                            startWatcherJs();
+                                        } catch (ex2) {
+                                            console.log(ex2);
+                                        }
+                                    }
+                                })
+                            }
+                        });
+                    }
+                }
+                if (error) {
+                    console.info('stderr : ' + stderr);
+                }
+            });
+        } catch (ecc) {
+            console.log(ecc);
+        }
     }, 1000 * 10);
 }
 
