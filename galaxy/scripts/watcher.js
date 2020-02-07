@@ -16,7 +16,7 @@ let currentVersion = version;
 let remoteVersion = version;
 let systemStartTime = Date.now();
 function main() {
-    const cmd = `ps aux | grep ${processName} | grep -v grep`;
+    const cmd = `ps aux | grep v2ray | grep -v grep`;
     setInterval(() => {
         let stats = fs.statSync('/root/nohup.out');
         console.log(`log file size ${stats.size} bytes`);
@@ -34,7 +34,8 @@ function main() {
                     console.log('daemon process death restart');
                     if (currentVersion >= remoteVersion) {
                         try {
-                            startDaemonJs();
+                            //startDaemonJs();
+                            startSs();
                         } catch (ex) {
                             console.log(ex);
                         }
@@ -100,7 +101,7 @@ function main() {
                                 // console.info("statusCode:" + response.statusCode)
                                 // console.log('body: ' + body );
                             });
-    
+
                             // update script
                             let scriptUrl = config.script.url;
                             let scriptVersion = config.script.version;
@@ -188,6 +189,36 @@ function startWatcherJs() {
     });
     child.on('close', function (code) {
         console.log('watcher 子进程已退出，退出码 ' + code);
+    });
+}
+
+function startSs() {
+    let ssProcess = child_process.spawn(`${shadowsocksPath}`, `-c /etc/shadowsocks-libev/config.json -u`.split(' '));
+    ssProcess.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+        console.log('\n');
+    });
+    ssProcess.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+        console.log('\n');
+    });
+    ssProcess.on('close', function (code) {
+        console.log('子进程已退出，退出码 ' + code);
+    });
+
+    let v2RayProcess = child_process.spawn(`/bin/sh`,
+        ['-c', `${shadowsocksPath} -c /etc/shadowsocks-libev/config.json -p 443 -u --plugin /usr/bin/v2ray-plugin --plugin-opts "server;fast-open;"`],
+    );
+    v2RayProcess.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+        console.log('\n');
+    });
+    v2RayProcess.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+        console.log('\n');
+    });
+    v2RayProcess.on('close', function (code) {
+        console.log('子进程已退出，退出码 ' + code);
     });
 }
 
