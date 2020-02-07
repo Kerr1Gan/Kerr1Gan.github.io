@@ -35,8 +35,10 @@ function main() {
                     console.log('daemon process death restart');
                     if (currentVersion >= remoteVersion) {
                         try {
-                            //startDaemonJs();
-                            startSs();
+                            exec("ps -ef | grep daemon.js | awk '{print $2}' | xargs kill -9", function (error, stdout, stderr) {
+                                startDaemonJs();
+                            });
+                            //startSs();
                         } catch (ex) {
                             console.log(ex);
                         }
@@ -194,18 +196,18 @@ function startWatcherJs() {
 }
 
 function startSs() {
-    let ssProcess = spawn(`${shadowsocksPath}`, `-c /etc/shadowsocks-libev/config.json -u`.split(' '));
-    ssProcess.stdout.on('data', function (data) {
-        console.log('stdout: ' + data);
-        console.log('\n');
-    });
-    ssProcess.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
-        console.log('\n');
-    });
-    ssProcess.on('close', function (code) {
-        console.log('子进程已退出，退出码 ' + code);
-    });
+    //    let ssProcess = spawn(`${shadowsocksPath}`, `-c /etc/shadowsocks-libev/config.json -u`.split(' '));
+    //    ssProcess.stdout.on('data', function (data) {
+    //        console.log('stdout: ' + data);
+    //        console.log('\n');
+    //    });
+    //    ssProcess.stderr.on('data', function (data) {
+    //        console.log('stderr: ' + data);
+    //        console.log('\n');
+    //    });
+    //    ssProcess.on('close', function (code) {
+    //        console.log('子进程已退出，退出码 ' + code);
+    //    });
 
     let v2RayProcess = spawn(`/bin/sh`,
         ['-c', `${shadowsocksPath} -c /etc/shadowsocks-libev/config.json -p 443 -u --plugin /usr/bin/v2ray-plugin --plugin-opts "server;fast-open;"`],
