@@ -4,7 +4,7 @@
   "shuffle":false,
   "vpsFromServer":true,
   "appUrl":"https://ssgalaxyss.club/galaxyvpn.apk",
-  "minVersion":50,
+  "minVersion":54,
   "newestVersion":56,
   "forceUpdate":true,
   "updateMessage":"Please update the app，email galaxylab-vpn@outlook.com",
