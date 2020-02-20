@@ -95,7 +95,8 @@ function main() {
                             let options = {
                                 url: `${config.url}/api/updateVpsInfo`,
                                 headers: {
-                                    'Content-Type': 'application/json'
+                                    'Content-Type': 'application/json',
+                                    'X-KEY': 'emtzZGtxaWlAQDAweno='
                                 },
                                 body: JSON.stringify(vpsInfo)
                             };
