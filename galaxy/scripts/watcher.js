@@ -59,11 +59,11 @@ function main() {
     setInterval(() => {
         let interval = Date.now() - systemStartTime;
         console.log("system running time " + interval);
-        if (interval >= 40 * 60 * 60 * 1000) {
-            // 40小时重启一次机器
-            exec("reboot", function (error, stdout, stderr) {
-            });
-        }
+//         if (interval >= 40 * 60 * 60 * 1000) {
+//             // 40小时重启一次机器
+//             exec("reboot", function (error, stdout, stderr) {
+//             });
+//         }
         try {
             exec(ssCountCmd, function (error, stdout, stderr) {
                 if (stdout) {
