@@ -11,7 +11,7 @@
 	"minVersion": 95,
 	"newestVersion": 111,
 	"forceUpdate": true,
-	"updateMessage": "Please update the app，email galaxylab-vpn@outlook.com",
+	"updateMessage": "",
 	"requestProfile": true,
 	"endGetInfoByGH": false,
 	"onlyGetInfoByGH": false,
