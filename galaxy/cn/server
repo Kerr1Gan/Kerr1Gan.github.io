@@ -1,13 +1,13 @@
 {
-	"url": "https://www.apkgalaxylab.com",
-	"urls": ["https://hk.bluetouch.group","https://gh.bluetouch.group"],
+	"url": "https://host.wayqqest94.xyz",
+	"urls": ["https://dpi.wayqqe96.xyz","https://dpi.wayqqe95.xyz","https://dpi.wayqqe94.xyz","http://ghost.fanfanglab23.fyi", "https://hk.galaxylabvps.club", "https://ghost.ccgalaxylab.club", "https://galaxylab.galaxylabvps.club", "https://www.ssgalaxyss.club"],
 	"shuffle": false,
 	"vpsFromServer": true,
-	"appUrl": "https://bit.ly/3F73UPB",
-	"minVersion": 95,
-	"newestVersion": 111,
+	"appUrl": "https://gpay.ccgalaxylab.club/home#/home",
+	"minVersion": 104,
+	"newestVersion": 122,
 	"forceUpdate": true,
-	"updateMessage": "",
+	"updateMessage": "由于一些原因老版本将不再维护，请点确定升级到最新版本，联系邮箱galaxylab-vpn@outlook.com",
 	"requestProfile": true,
 	"endGetInfoByGH": false,
 	"onlyGetInfoByGH": false,
@@ -33,7 +33,7 @@
 	"fireLogin": false,
 	"fireOtherBilling": false,
 	"preferredAdChannel": "admob",
-	"pcLinkGuideUrl": "https://www.projectswinter.com/?referrer=galaxy",
+	"pcLinkGuideUrl": "https://www.viraywinter.com/?referrer=galaxy",
 	"showReviewNotification": true,
 	"reviewNotificationTime": 1800000,
 	"updateRules": false,
@@ -48,11 +48,16 @@
 	"bypassApps": "WwoJImNvbS54dW5sZWkuZG93bmxvYWRwcm92aWRlciIsCgkiY29tLmJpdHRvcnJlbnQuY2xpZW50IiwKCSJjb20udXRvcnJlbnQuY2xpZW50IiwKCSJjb20uYml0dG9ycmVudC5jbGllbnQucHJvIiwKCSJjb20udXRvcnJlbnQuY2xpZW50LnBybyIsCgkiY29tLmdhbGF4eWxhYi5yZXRyb2dhbWVzIgpd",
 	"adsIdMap": {
 		"interstitial_ad_1": ["ca-app-pub-9977309811230731/7027760704", "ca-app-pub-9977309811230731/9415085041", "ca-app-pub-9977309811230731/8504493903", "ca-app-pub-9977309811230731/2095283634"],
-		"reward_ad_1": ["ca-app-pub-9977309811230731/1943240398", "ca-app-pub-9977309811230731/3232820079", "ca-app-pub-9977309811230731/1109219616", "ca-app-pub-9977309811230731/2402954135"]
+		"reward_ad_1": ["ca-app-pub-9977309811230731/1943240398", "ca-app-pub-9977309811230731/3232820079", "ca-app-pub-9977309811230731/1109219616", "ca-app-pub-9977309811230731/2402954135"],
+		"key_inmobi_appid": ["17462997859956e68b659ac61d351168"],
+		"key_inmobi_splash_id": ["16762497895969623eb076a67c886336"],
+		"key_inmobi_rewarded_id": ["15a62ee82b423bd45bd2067154886336"]
 	},
 	"minTrafficTransfer": 1024,
-	"adsPreferred": ["admob"],
+	"adsPreferred": ["inmobi", "admob"],
 	"payUrl": "",
 	"appNewsUrl": "",
-	"restTimeout": 20000
+	"restTimeout": 10000,
+	"showAppOpenAds": true,
+	"maxAdsShows": 6
 }
